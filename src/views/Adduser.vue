@@ -39,6 +39,25 @@
         </div>
       </div>
 
+      <div class="form-header">
+        <h3 class="sub-title">Settings</h3>
+      </div>
+
+      <div class="line row">
+        <div class="form-item left">
+          <label class="label" for="unit">Unit:</label>
+          <select class="input" name="unit">
+            <option value="metric">Metric</option>
+            <option value="imperial">Imperial</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-primary">
+          Add record
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -62,7 +81,6 @@ export default {
     padding: 12px;
     max-width: 100%;
     margin: 0 auto;
-    height: 100vh;
   }
 
   .form-header {
@@ -94,6 +112,15 @@ export default {
     max-width: 162px;
     min-width: 100%;
   }
+
+  .btn-row {
+    display: block;
+    padding: 0px;
+  }
+
+  .btn-primary {
+    width: 100%;
+  }
 }
 
 /* Screen bigger then 481px */
@@ -108,6 +135,16 @@ export default {
 
   .form-header {
     margin: 0 12px;
+  }
+
+  .btn-row {
+    display: block;
+    padding: 12px;
+  }
+
+  .btn-primary {
+    align-self: flex-end;
+    width: 160px;
   }
 }
 
@@ -164,5 +201,22 @@ export default {
 .form-item select {
   -webkit-appearance: none;
   line-height: 24px;
+}
+.btn-row {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-primary {
+  padding: 12px;
+  line-height: 24px;
+  color: #fff;
+  background: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 16px;
+  outline: none;
 }
 </style>
