@@ -11,6 +11,7 @@
   --primary-color: #34cb79;
   --title-color: #322153;
   --text-color: #6c6c80;
+  --light-grey: #f0f0f5;
 }
 
 * {
@@ -20,7 +21,7 @@
 }
 
 body {
-  background: #f0f0f5;
+  background: var(--light-grey);
   -webkit-font-smoothing: antialiased;
   color: var(--text-color);
 }

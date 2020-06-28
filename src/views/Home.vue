@@ -1,21 +1,21 @@
 <template>
   <div id="page-home">
     <div class="content">
-      <Header />
+      <Logo />
       <Main />
     </div>
-    <img alt="logo" src="../assets/home-background.svg" />
+    <img alt="logo" src="../assets/placeholder.svg" />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Header from "../components/Header";
+import Logo from "../components/Logo";
 import Main from "../components/Main";
 
 export default {
   name: "Home",
-  components: { Header, Main }
+  components: { Logo, Main }
 };
 </script>
 <style scoped>
@@ -44,7 +44,7 @@ export default {
   align-items: flex-start;
 }
 
-@media (max-width: 900px) {
+/* @media (max-width: 900px) {
   #page-home .content {
     align-items: center;
     text-align: center;
@@ -65,5 +65,5 @@ export default {
   #page-home .content .main p {
     font-size: 24px;
   }
-}
+} */
 </style>

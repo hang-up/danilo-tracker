@@ -1,10 +1,10 @@
 <template>
-  <div class="header">
-    <h2 class="logo">Body tracker</h2>
+  <div class="logo">
+    <h2>Body tracker</h2>
   </div>
 </template>
 <style scoped>
-.header {
+.logo {
   margin: 48px 0 0;
 }
 </style>
