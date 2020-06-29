@@ -9,21 +9,30 @@
       <div class="line">
         <div class="form-item">
           <label class="label" for="name">Name:</label>
-          <input class="input" type="text" name="name" />
+          <input class="input" type="text" name="name" v-model="name" />
         </div>
       </div>
 
       <div class="line">
         <div class="form-item">
           <label class="label" for="birthdate">Birthdate:</label>
-          <input class="input" type="date" name="birthdate" />
+          <input
+            class="input"
+            type="date"
+            name="birthdate"
+            v-model="birthdate"
+          />
         </div>
 
         <div class="form-item">
           <label class="label" for="gender">Gender:</label>
           <select class="input" name="gender">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
+            <option
+              v-for="gender in genders"
+              :key="gender.value"
+              :value="gender.value"
+              >{{ gender.name }}</option
+            >
           </select>
         </div>
       </div>
@@ -31,11 +40,25 @@
       <div class="line row">
         <div class="form-item left">
           <label class="label" for="weight">Weight:</label>
-          <input class="input number" type="number" name="weight" />
+          <input
+            class="input number"
+            type="number"
+            name="weight"
+            :min="minWeight"
+            v-model="weight"
+          />
+          <p class="unit-placeholder">kg</p>
         </div>
         <div class="form-item right">
           <label class="label" for="height">Height:</label>
-          <input class="input number" type="number" name="height" />
+          <input
+            class="input number"
+            type="number"
+            name="height"
+            :min="minHeight"
+            v-model="height"
+          />
+          <p class="unit-placeholder">cm</p>
         </div>
       </div>
 
@@ -47,8 +70,9 @@
         <div class="form-item left">
           <label class="label" for="unit">Unit:</label>
           <select class="input" name="unit">
-            <option value="metric">Metric</option>
-            <option value="imperial">Imperial</option>
+            <option v-for="unit in units" :key="unit.value" :value="unit.value">
+            {{ unit.name }}
+            </option>
           </select>
         </div>
       </div>
@@ -67,7 +91,24 @@
 
 export default {
   name: "Adduser",
-  components: {}
+  data: () => {
+    return {
+      name: "Danilo",
+      birthdate: "",
+      weight: "",
+      height: "",
+      units: [
+        { name: "Metric", value: "metric", prefixHeight: "cm" },
+        { name: "Imperial", value: "imperial", prefixHeight: "incehs" },
+      ],
+      genders: [
+        { name: "Male", value: "male" },
+        { name: "Female", value: "female" },
+      ],
+      minHeight: 130,
+      minWeight: 35,
+    }
+  }
 };
 </script>
 <style scoped>
@@ -146,6 +187,19 @@ export default {
     align-self: flex-end;
     width: 160px;
   }
+
+  .line.row {
+    flex-direction: row;
+    width: 140px;
+  }
+
+  .form-item.left {
+    margin-right: 12px;
+  }
+
+  .form-item.right {
+    margin-left: 12px;
+  }
 }
 
 /* General style */
@@ -218,5 +272,9 @@ export default {
   font-weight: 600;
   margin-top: 16px;
   outline: none;
+}
+
+.btn-primary:hover {
+  cursor: pointer;
 }
 </style>
