@@ -9,7 +9,7 @@
       <div class="line">
         <div class="form-item">
           <label class="label" for="name">Name:</label>
-          <input class="input" type="text" name="name" v-model="name" />
+          <input class="input" type="text" name="name" v-model="user.name" />
         </div>
       </div>
 
@@ -20,13 +20,13 @@
             class="input"
             type="date"
             name="birthdate"
-            v-model="birthdate"
+            v-model="user.birthdate"
           />
         </div>
 
         <div class="form-item">
           <label class="label" for="gender">Gender:</label>
-          <select class="input" name="gender">
+          <select class="input" name="gender" v-model="user.gender">
             <option
               v-for="gender in genders"
               :key="gender.value"
@@ -45,9 +45,8 @@
             type="number"
             name="weight"
             :min="minWeight"
-            v-model="weight"
+            v-model="user.weight"
           />
-          <p class="unit-placeholder">kg</p>
         </div>
         <div class="form-item right">
           <label class="label" for="height">Height:</label>
@@ -56,29 +55,27 @@
             type="number"
             name="height"
             :min="minHeight"
-            v-model="height"
+            v-model="user.height"
           />
-          <p class="unit-placeholder">cm</p>
         </div>
       </div>
 
       <div class="form-header">
         <h3 class="sub-title">Settings</h3>
       </div>
-
       <div class="line row">
         <div class="form-item left">
           <label class="label" for="unit">Unit:</label>
-          <select class="input" name="unit">
+          <select class="input" name="unit" v-model="user.preferredUnit">
             <option v-for="unit in units" :key="unit.value" :value="unit.value">
-            {{ unit.name }}
+              {{ unit.name }}
             </option>
           </select>
         </div>
       </div>
 
       <div class="btn-row">
-        <button class="btn-primary">
+        <button class="btn-primary" @click="handleSubmit">
           Add record
         </button>
       </div>
@@ -93,20 +90,33 @@ export default {
   name: "Adduser",
   data: () => {
     return {
-      name: "Danilo",
-      birthdate: "",
-      weight: "",
-      height: "",
+      user: {
+        name: "Danilo",
+        birthdate: "",
+        weight: 0,
+        height: 0,
+        preferredUnit: "",
+        gender: ""
+      },
       units: [
         { name: "Metric", value: "metric", prefixHeight: "cm" },
-        { name: "Imperial", value: "imperial", prefixHeight: "incehs" },
+        { name: "Imperial", value: "imperial", prefixHeight: "inches" }
       ],
       genders: [
         { name: "Male", value: "male" },
-        { name: "Female", value: "female" },
+        { name: "Female", value: "female" }
       ],
       minHeight: 130,
-      minWeight: 35,
+      minWeight: 35
+    };
+  },
+  methods: {
+    /**
+     * Saves the user in local Storage and redirects to program page.
+     *
+     */
+    handleSubmit() {
+      window.localStorage.setItem("user", JSON.stringify(this.user));
     }
   }
 };
