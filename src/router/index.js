@@ -14,13 +14,13 @@ const routes = [
     path: "/adduser",
     name: "AddUser",
     component: () =>
-      import(/* webpackChunkName: "AddUser" */ "../views/Adduser.vue")
+      import(/* webpackChunkName: "AddUser" */ "../views/AddUser.vue")
   },
   {
-    path: "/protocol",
-    name: "Protocol",
+    path: "/addtest",
+    name: "AddTest",
     component: () =>
-      import(/* webpackChunkName: "Protocol" */ "../views/Protocol.vue")
+      import(/* webpackChunkName: "AddTest" */ "../views/AddTest.vue")
   }
 ];
 
