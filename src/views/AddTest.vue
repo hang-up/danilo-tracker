@@ -11,12 +11,17 @@
         <div class="line">
           <div class="form-item">
             <label class="label" for="name">Name:</label>
-            <input class="input" type="text" name="name" v-model="user.name" />
+            <input
+              class="input"
+              type="text"
+              name="name"
+              v-model="test.client_name"
+            />
           </div>
 
           <div class="form-item">
             <label class="label" for="protocol">Protocol:</label>
-            <select class="input" name="protocol" v-model="user.protocol">
+            <select class="input" name="protocol" v-model="test.protocol">
               <option
                 v-for="protocol in protocols"
                 :key="protocol.value"
@@ -26,79 +31,54 @@
             </select>
           </div>
         </div>
+      </div>
+    </Formhelper>
 
-        <div class="line">
-          <div class="form-item">
-            <label class="label" for="birthdate">Birthdate:</label>
-            <input
-              class="input"
-              type="date"
-              name="birthdate"
-              v-model="user.birthdate"
-            />
-          </div>
-
-          <div class="form-item">
-            <label class="label" for="gender">Gender:</label>
-            <select class="input" name="gender" v-model="user.gender">
-              <option
-                v-for="gender in genders"
-                :key="gender.value"
-                :value="gender.value"
-                >{{ gender.name }}</option
-              >
-            </select>
-          </div>
-        </div>
-
+    <formhelper>
+      <div slot="form-header" class="form-header">
+        <h3 class="sub-title">{{ test.protocol }}</h3>
+      </div>
+      <div slot="form-content" class="form-group">
         <div class="line row">
           <div class="form-item left">
             <label class="label" for="weight">Weight:</label>
             <input
-              class="input number"
+              class="input"
               type="number"
               name="weight"
-              :min="minWeight"
-              v-model="user.weight"
+              v-model="test.weight"
             />
           </div>
-          <div class="form-item right">
-            <label class="label" for="height">Height:</label>
-            <input
-              class="input number"
-              type="number"
-              name="height"
-              :min="minHeight"
-              v-model="user.height"
-            />
-          </div>
-        </div>
 
-        <div class="form-header">
-          <h3 class="sub-title">Settings</h3>
-        </div>
-        <div class="line row">
-          <div class="form-item left">
-            <label class="label" for="unit">Unit:</label>
-            <select class="input" name="unit" v-model="user.preferredUnit">
+          <div class="form-item right">
+            <label class="label" for="weight">Desired weight:</label>
+            <input
+              class="input"
+              type="number"
+              name="weight"
+              v-model="test.desiredWeight"
+            />
+          </div>
+
+          <div class="form-item">
+            <label class="label" for="protocol">Protocol:</label>
+            <select class="input" name="protocol" v-model="test.protocol">
               <option
-                v-for="unit in units"
-                :key="unit.value"
-                :value="unit.value"
-              >
-                {{ unit.name }}
+                v-for="protocol in protocols"
+                :key="protocol.value"
+                :value="protocol.value"
+                >{{ protocol.name }}
               </option>
             </select>
           </div>
         </div>
-
-        <div slot="form-controls" class="btn-row">
-          <button class="btn-primary" @click="handleSubmit">
-            Save
-          </button>
-        </div>
       </div>
-    </Formhelper>
+      <div slot="form-actions" class="btn-row">
+        <button class="btn-primary" @click="handleSubmit">
+          Save
+        </button>
+      </div>
+    </formhelper>
   </div>
 </template>
 
@@ -110,17 +90,19 @@ export default {
   components: { Formhelper },
   data: () => {
     return {
-      user: {
-        name: "Danilo",
+      test: {
+        user: {},
+        protocol: "ss",
         birthdate: "",
         weight: 0,
+        desiredWeight: 0,
         height: 0,
         preferredUnit: "",
         gender: ""
       },
       protocols: [
         { name: "Pollock 7 sites", value: "pollock7" },
-        { name: "Pollock 3 sites", value: "pollock3" },
+        { name: "Pollock 3 sites", value: "pollock3" }
       ],
       units: [
         { name: "Metric", value: "metric", prefixHeight: "cm" },
@@ -134,14 +116,12 @@ export default {
       minWeight: 35
     };
   },
+  created() {
+    this.user = JSON.parse(window.localStorage.getItem("user"));
+  },
+
   methods: {
-    /**
-     * Saves the user in local Storage and redirects to program page.
-     *
-     */
-    handleSubmit() {
-      window.localStorage.setItem("user", JSON.stringify(this.user));
-    }
+    fetchProtocols() {}
   }
 };
 </script>
