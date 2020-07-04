@@ -8,7 +8,7 @@
 <script>
 import Menu from "./components/Menu";
 export default {
-  components: { Menu }
+  components: { Menu },
 };
 </script>
 <style>
@@ -16,6 +16,7 @@ export default {
 
 :root {
   --primary-color: #34cb79;
+  --primary-color-darker: #2FB86E;
   --title-color: #322153;
   --text-color: #6c6c80;
   --light-grey: #f0f0f5;
@@ -55,5 +56,11 @@ h6 {
   flex-direction: column;
   max-width: 1440px;
   margin: 0 auto;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  body {
+    background: #fff;
+  }
 }
 </style>
