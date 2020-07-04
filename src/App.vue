@@ -1,9 +1,16 @@
 <template>
   <div id="app">
+    <Menu />
     <router-view />
   </div>
 </template>
 
+<script>
+import Menu from "./components/Menu";
+export default {
+  components: { Menu }
+};
+</script>
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap");
 
@@ -32,6 +39,7 @@ button {
   font-family: "Quicksand", Arial, Helvetica, sans-serif;
 }
 
+span,
 h1,
 h2,
 h3,
@@ -40,5 +48,12 @@ h5,
 h6 {
   color: var(--title-color);
   font-family: "Quicksand";
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 </style>

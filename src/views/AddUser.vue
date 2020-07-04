@@ -112,11 +112,35 @@ export default {
   },
   methods: {
     /**
+     * Add an item to a localStorage() array
+     * @param {String} users  The localStorage() key
+     * @param {Object} user The localStorage() value
+     */
+    addToLocalStorageArray(users, user) {
+      let existingUsers = [];
+
+      if (window.localStorage.getItem("users") !== null) {
+        existingUsers = JSON.parse(localStorage.getItem("users"));
+
+        existingUsers.push(user);
+
+        localStorage.setItem(users, JSON.stringify(existingUsers));
+      }
+
+      if (window.localStorage.getItem("users") === null) {
+        existingUsers.push(user);
+
+        localStorage.setItem(users, JSON.stringify(existingUsers));
+      }
+    },
+    /**
      * Saves the user in local Storage and redirects to program page.
      *
      */
     handleSubmit() {
-      window.localStorage.setItem("user", JSON.stringify(this.user));
+      this.addToLocalStorageArray("users", this.user);
+      //window.localStorage.setItem("user", JSON.stringify(this.user));
+      this.$router.push({ path: "/addtest" });
     }
   }
 };

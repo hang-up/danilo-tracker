@@ -1,126 +1,147 @@
 <template>
   <div class="adduser">
-    <Formhelper>
-      <div slot="form-header" class="form-header">
-        <h1>Create a new</h1>
-        <h1 class="title">measurement</h1>
-        <h3 class="sub-title">Pick a client</h3>
-      </div>
-      <div slot="form-content" class="form-group">
+    <div class="form-header">
+      <h1>Create a new</h1>
+      <h1 class="title">measurement</h1>
+      <h3 class="sub-title">Pick a client</h3>
+    </div>
+    <div class="form-group">
+      <div class="line">
+        <div class="form-item">
+          <label class="label" for="name">Name:</label>
+          <input class="input" type="text" name="name" v-model="search" />
+        </div>
 
-        <div class="line">
-          <div class="form-item">
-            <label class="label" for="name">Name:</label>
-            <input
-              class="input"
-              type="text"
-              name="name"
-              v-model="test.client_name"
-            />
-          </div>
-
-          <div class="form-item">
-            <label class="label" for="protocol">Protocol:</label>
-            <select class="input" name="protocol" v-model="test.protocol">
-              <option
-                v-for="protocol in protocols"
-                :key="protocol.value"
-                :value="protocol.value"
-                >{{ protocol.name }}
-              </option>
-            </select>
+        <div class="form-item">
+          <label class="label" for="protocol">Protocol:</label>
+          <select class="input" name="protocol" v-model="test.protocol">
+            <option
+              v-for="protocol in protocols"
+              :key="protocol.value"
+              :value="protocol.value"
+              >{{ protocol.name }}
+            </option>
+          </select>
+          <div v-for="user in filteredUser" :key="user.name">
+            {{ user.name }}
           </div>
         </div>
       </div>
-    </Formhelper>
+    </div>
 
-    <formhelper>
-      <div slot="form-header" class="form-header">
-        <h3 class="sub-title">{{ test.protocol }}</h3>
-      </div>
-      <div slot="form-content" class="form-group">
-        <div class="line row">
-          <div class="form-item left">
-            <label class="label" for="weight">Weight:</label>
-            <input
-              class="input"
-              type="number"
-              name="weight"
-              v-model="test.weight"
-            />
-          </div>
+    <div class="form-header">
+      <h3 class="sub-title">{{ test.protocol }}</h3>
+    </div>
+    <div class="form-group">
+      <div class="line row">
+        <div class="form-item left">
+          <label class="label" for="weight">Weight:</label>
+          <input
+            class="input"
+            type="number"
+            name="weight"
+            v-model="test.weight"
+          />
+        </div>
 
-          <div class="form-item right">
-            <label class="label" for="weight">Desired weight:</label>
-            <input
-              class="input"
-              type="number"
-              name="weight"
-              v-model="test.desiredWeight"
-            />
-          </div>
+        <div class="form-item right">
+          <label class="label" for="desiredweight">Desired weight:</label>
+          <input
+            class="input"
+            type="number"
+            name="desiredweight"
+            v-model="test.desiredWeight"
+          />
+        </div>
 
-          <div class="form-item">
-            <label class="label" for="protocol">Protocol:</label>
-            <select class="input" name="protocol" v-model="test.protocol">
-              <option
-                v-for="protocol in protocols"
-                :key="protocol.value"
-                :value="protocol.value"
-                >{{ protocol.name }}
-              </option>
-            </select>
-          </div>
+        <div class="form-item right">
+          <label class="label" for="height">Height:</label>
+          <input
+            class="input"
+            type="number"
+            name="height"
+            v-model="test.height"
+          />
+        </div>
+
+        <div class="form-item">
+          <label class="label" for="testdate">Test date:</label>
+          <input
+            class="input"
+            type="date"
+            name="testdate"
+            v-model="test.testDate"
+          />
         </div>
       </div>
-      <div slot="form-actions" class="btn-row">
-        <button class="btn-primary" @click="handleSubmit">
-          Save
-        </button>
-      </div>
-    </formhelper>
+    </div>
+
+    <keep-alive>
+      <component :is="protocol"></component>
+    </keep-alive>
+
+    <div class="btn-row">
+      <button class="btn-primary" @click="handleSubmit">
+        Save
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
-import Formhelper from "../components/form-helper.vue";
+import Pollock3 from "../components/protocols/pollock-3";
+import Pollock7 from "../components/protocols/pollock-7";
 
 export default {
   name: "Adduser",
-  components: { Formhelper },
+  components: { Pollock3, Pollock7 },
   data: () => {
     return {
+      search: "",
+      users: null,
       test: {
         user: {},
-        protocol: "ss",
-        birthdate: "",
+        protocol: "",
+        testDate: new Date(),
         weight: 0,
         desiredWeight: 0,
-        height: 0,
-        preferredUnit: "",
-        gender: ""
+        height: 0
       },
       protocols: [
         { name: "Pollock 7 sites", value: "pollock7" },
         { name: "Pollock 3 sites", value: "pollock3" }
-      ],
-      units: [
-        { name: "Metric", value: "metric", prefixHeight: "cm" },
-        { name: "Imperial", value: "imperial", prefixHeight: "inches" }
-      ],
-      genders: [
-        { name: "Male", value: "male" },
-        { name: "Female", value: "female" }
       ],
       minHeight: 130,
       minWeight: 35
     };
   },
   created() {
-    this.user = JSON.parse(window.localStorage.getItem("user"));
+    // check if its coming from a new user page
+    if (window.localStorage.getItem("users") === null) {
+      // aqui checar se tem user unico vindo do localstorage.
+      // quand criar um novo user add ele numa lista de users.
+      // choose user from user list
+      alert("no user");
+    } else {
+      console.log("do test created users");
+    }
+  },
+
+  computed: {
+    protocol() {
+      return this.test.protocol;
+    },
+    filteredUser() {
+      const users = JSON.parse(window.localStorage.getItem("users"));
+      return users.filter(user => user.name.match(this.search));
+    }
   },
 
   methods: {
+    handleSubmit() {
+      alert("click");
+    },
+
     fetchProtocols() {}
   }
 };
