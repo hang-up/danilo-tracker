@@ -23,6 +23,7 @@ export default {
 </script>
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap");
+@import "./css/form.css";
 
 :root {
   --primary-color: #34cb79;

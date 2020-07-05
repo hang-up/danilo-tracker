@@ -1,11 +1,63 @@
 <template>
-  <div class="adduser">
-    <div class="form-header">
+  <div class="form-container">
+    <div class="g grid-100 form-header">
       <h1>Create a new</h1>
       <h1 class="title">measurement</h1>
       <h3 class="sub-title">Pick a client</h3>
     </div>
-    <div class="form-group">
+
+    <div class="g grid-33 grid-m-100">
+      <label class="label" for="name">Name:</label>
+      <input class="input" type="text" name="name" v-model="search" />
+    </div>
+    <div class="g grid-33 grid-m-100">
+      <label class="label" for="protocol">Protocol:</label>
+      <select class="input" name="protocol" v-model="test.protocol">
+        <option
+          v-for="protocol in protocols"
+          :key="protocol.value"
+          :value="protocol.value"
+          >{{ protocol.name }}
+        </option>
+      </select>
+    </div>
+    <div class="g grid-33 grid-m-66">
+      <label class="label" for="testdate">Test date:</label>
+      <input
+        class="input"
+        type="date"
+        name="testdate"
+        v-model="test.testDate"
+      />
+    </div>
+    <div class="g grid-33 grid-m-33">
+      <label class="label" for="height">Height:</label>
+      <input class="input" type="number" name="height" v-model="test.height" />
+    </div>
+    <div class="g grid-33 grid-m-50">
+      <label class="label" for="weight">Weight:</label>
+      <input class="input" type="number" name="weight" v-model="test.weight" />
+    </div>
+    <div class="g grid-33 grid-m-50">
+      <label class="label" for="desiredweight">Desired weight:</label>
+      <input
+        class="input"
+        type="number"
+        name="desiredweight"
+        v-model="test.desiredWeight"
+      />
+    </div>
+
+    <keep-alive>
+      <component :is="protocol"></component>
+    </keep-alive>
+
+    <div class="g grid-33 grid-m-100">
+      <button class="btn-primary" @click="handleSubmit">
+        Save
+      </button>
+    </div>
+    <!-- <div class="form-group">
       <div class="line">
         <div class="form-item">
           <label class="label" for="name">Name:</label>
@@ -27,12 +79,12 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <div class="form-header">
+    <!-- <div class="form-header">
       <h3 class="sub-title">{{ test.protocol }}</h3>
-    </div>
-    <div class="form-group">
+    </div> -->
+    <!-- <div class="form-group">
       <div class="line row">
         <div class="form-item left">
           <label class="label" for="weight">Weight:</label>
@@ -74,17 +126,7 @@
           />
         </div>
       </div>
-    </div>
-
-    <keep-alive>
-      <component :is="protocol"></component>
-    </keep-alive>
-
-    <div class="btn-row">
-      <button class="btn-primary" @click="handleSubmit">
-        Save
-      </button>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -105,14 +147,14 @@ export default {
         testDate: new Date(),
         weight: 0,
         desiredWeight: 0,
-        height: 0
+        height: 0,
       },
       protocols: [
         { name: "Pollock 7 sites", value: "pollock7" },
-        { name: "Pollock 3 sites", value: "pollock3" }
+        { name: "Pollock 3 sites", value: "pollock3" },
       ],
       minHeight: 130,
-      minWeight: 35
+      minWeight: 35,
     };
   },
   created() {
@@ -133,8 +175,8 @@ export default {
     },
     filteredUser() {
       const users = JSON.parse(window.localStorage.getItem("users"));
-      return users.filter(user => user.name.match(this.search));
-    }
+      return users.filter((user) => user.name.match(this.search));
+    },
   },
 
   methods: {
@@ -142,17 +184,17 @@ export default {
       alert("click");
     },
 
-    fetchProtocols() {}
-  }
+    fetchProtocols() {},
+  },
 };
 </script>
 <style scoped>
-* {
+/* * {
   box-sizing: border-box;
-}
+} */
 
 /* Smartphones (portrait and landscape) ----------- */
-@media (min-width: 320px) and (max-width: 480px) {
+/* @media (min-width: 320px) and (max-width: 480px) {
   .adduser {
     padding: 12px;
     max-width: 100%;
@@ -200,6 +242,7 @@ export default {
 }
 
 /* Screen bigger then 481px */
+/*
 @media (min-width: 481px) {
   .adduser {
     padding: 40px;
@@ -235,10 +278,10 @@ export default {
   .form-item.right {
     margin-left: 12px;
   }
-}
+} */
 
 /* General style */
-.adduser {
+/* .adduser {
   display: flex;
   flex-direction: column;
   background: #fff;
@@ -311,5 +354,5 @@ export default {
 
 .btn-primary:hover {
   cursor: pointer;
-}
+} */
 </style>
