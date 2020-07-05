@@ -13,12 +13,14 @@
         <input class="input-home" type="text" name="search" />
       </div>
     </div>
+    <div class="picture">
+      <img alt="logo" src="../assets/placeholder.svg" />
+    </div>
     <!-- <div>
       <p>Colocar a imagem resposnsiva e que nao tenha influencia no resto do</p>
       <p>conteudo. A imagm tem que tocar no fundo.</p>
       <p>Ver porque com lrem * 100 ta indo pro teto</p>
     </div> -->
-    <!-- <img alt="logo" src="../assets/placeholder.svg" /> -->
   </div>
 </template>
 
@@ -76,6 +78,13 @@
   border: solid 1px var(--primary-color);
 }
 
+.picture {
+  width: 877px;
+  max-width: 100%;
+  height: auto;
+  align-self: flex-end;
+}
+
 @media (min-width: 320px) and (max-width: 480px) {
   .content {
     flex-direction: column;
@@ -112,10 +121,6 @@
     height: 58px;
     padding: 12px 12px 13px 74px;
   }
-
-  img {
-    display: none;
-  }
 }
 
 @media (min-width: 481px) {
@@ -142,10 +147,6 @@
 
   .main .input-home:hover {
     cursor: text;
-  }
-
-  img {
-    align-self: flex-end;
   }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Menu />
+    <Menu :route="currentRoute" />
     <router-view />
   </div>
 </template>
@@ -9,6 +9,16 @@
 import Menu from "./components/Menu";
 export default {
   components: { Menu },
+  computed: {
+    currentRoute() {
+      return this.$router.currentRoute.name;
+    }
+  },
+  watch: {
+    currentRoute(newr, oldr) {
+      console.log(newr, oldr);
+    }
+  }
 };
 </script>
 <style>

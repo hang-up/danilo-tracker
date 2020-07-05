@@ -242,6 +242,7 @@ export default {
   flex-direction: column;
   background: #fff;
   max-width: 736px;
+  width: 100%;
   margin: 0 auto;
 }
 

@@ -1,46 +1,40 @@
 <template>
   <div class="menu">
-    <h2 class="logo" @click="handleGoHome">Body Tracker</h2>
-    <div class="menu-link" @click="handleAddOrGoBack">
-      <i :class="iconClass" class="icon-menu"></i><span>{{ textLink }}</span>
+    <h2 class="logo">Body Tracker</h2>
+    <div v-if="isHome" class="menu-link" @click="handleAddUser">
+      <i class="fas fa-sign-in-alt icon-menu"></i><span>Add new user</span>
+    </div>
+    <div v-else class="menu-link" @click="handleGoBack">
+      <i class="fas fa-arrow-left icon-menu"></i><span>Go back</span>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  data: () => {
-    return {
-      textLink: "Add new user",
-    };
-  },
-  computed: {
-    iconClass() {
-      if (!this.isHome) {
-        return `fas fa-arrow-left`;
-      }
-      return `fas fa-sign-in-alt`;
-    },
+  props: {
+    route: {
+      type: String
+    }
   },
   // window.history.length > 1
   created() {
+    console.log("route", this.route);
     console.log(this.$router.currentRoute.name === "Home");
   },
-  methods: {
+  computed: {
     isHome() {
       return this.$router.currentRoute.name === "Home";
-    },
+    }
+  },
+  methods: {
 
-    handleGoHome() {
-      // If is already in home page return
-      if (this.isHome) return;
-      // if not go to home page
-      this.$router.push("/");
+    handleAddUser() {
+      this.$router.push("/adduser");
     },
-
-    handleAddOrGoBack() {
-      this.isHome ? this.$router.push("/adduser") : this.$router.go(-1);
-    },
+    handleGoBack() {
+      this.$router.go(-1);
+    }
   },
 };
 </script>
