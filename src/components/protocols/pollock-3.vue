@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: "Pollock 3",
+  name: 'Pollock 3',
   data: () => {
     return {
       size1: 0,
@@ -15,9 +15,9 @@ export default {
   },
   methods: {
     handleSubmit() {
-      console.log("Submitted Pollock 3 form!", this.sumOfSites);
-      this.$emit("protocol", this.sumOfSites);
-      this.$router.push({ path: "/" });
+      console.log('Submitted Pollock 3 form!', this.sumOfSites);
+      this.$emit('protocol', this.sumOfSites);
+      this.$router.push({ path: '/' });
     },
   },
 };

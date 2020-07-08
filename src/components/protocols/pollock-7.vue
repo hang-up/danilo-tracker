@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: "Pollock 7",
+  name: 'Pollock 7',
   data: () => {
     return {
       measures: {
@@ -11,13 +11,13 @@ export default {
         size5: 0,
         size6: 0,
         size7: 0,
-      }
-    }
+      },
+    };
   },
   methods: {
     handleSubmit() {
-      console.log("Submitted Pollock 3 form!");
-      this.router.push({ name: "home" });
+      console.log('Submitted Pollock 3 form!');
+      this.router.push({ name: 'home' });
     },
   },
 };
