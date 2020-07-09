@@ -22,3 +22,19 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+### Notes
+> July 9th 2020
+> For next time: save protocol to the right user?
+
+```
+npx eslint src/**/**.js --fix // To fix linting errors project wide.
+
+x Add back in all the pages instead of add new user
+  - this.$route instead of this.$router
+x Fetching the users to be populated in the select Client
+  - clients service layer
+x Fixing the pollock protocols selection
+  - dynamic imports
+```
