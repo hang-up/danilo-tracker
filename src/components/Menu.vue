@@ -12,13 +12,9 @@
 
 <script>
 export default {
-  // window.history.length > 1
-  created() {
-    console.log('route', this.$router.currentRoute.name);
-  },
   computed: {
     isHome() {
-      return this.$router.currentRoute.name === 'Home';
+      return this.$route.path === '/';
     },
   },
   methods: {
