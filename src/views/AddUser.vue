@@ -15,22 +15,14 @@
     </div>
     <div class="g grid-50 grid-m-66">
       <label class="label" for="birthdate">Birthdate:</label>
-      <input
-        class="input input-date"
-        type="date"
-        name="birthdate"
-        v-model="user.birthdate"
-      />
+      <input class="input input-date" type="date" name="birthdate" v-model="user.birthdate" />
     </div>
     <div class="g grid-50 grid-m-33">
       <label class="label" for="gender">Gender:</label>
       <select class="input" name="gender" v-model="user.gender">
-        <option
-          v-for="gender in genders"
-          :key="gender.value"
-          :value="gender.value"
-          >{{ gender.name }}</option
-        >
+        <option v-for="gender in genders" :key="gender.value" :value="gender.value">
+          {{ gender.name }}
+        </option>
       </select>
     </div>
 
@@ -74,29 +66,32 @@
 // @ is an alias to /src
 
 export default {
-  name: "Adduser",
+  name: 'Adduser',
   data: () => {
     return {
       user: {
-        name: "",
-        email: "",
-        birthdate: "",
+        name: '',
+        email: '',
+        birthdate: '',
         weight: 0,
         height: 0,
-        preferredUnit: "",
-        gender: "",
+        preferredUnit: '',
+        gender: '',
       },
       units: [
-        { name: "Metric", value: "metric", prefixHeight: "cm" },
-        { name: "Imperial", value: "imperial", prefixHeight: "inches" },
+        { name: 'Metric', value: 'metric', prefixHeight: 'cm' },
+        { name: 'Imperial', value: 'imperial', prefixHeight: 'inches' },
       ],
       genders: [
-        { name: "Male", value: "male" },
-        { name: "Female", value: "female" },
+        { name: 'Male', value: 'male' },
+        { name: 'Female', value: 'female' },
       ],
       minHeight: 130,
-      minWeight: 35
+      minWeight: 35,
     };
+  },
+  created() {
+    console.log(this.route);
   },
   methods: {
     /**
@@ -107,15 +102,15 @@ export default {
     addToLocalStorageArray(users, user) {
       let existingUsers = [];
 
-      if (window.localStorage.getItem("users") !== null) {
-        existingUsers = JSON.parse(localStorage.getItem("users"));
+      if (window.localStorage.getItem('users') !== null) {
+        existingUsers = JSON.parse(localStorage.getItem('users'));
 
         existingUsers.push(user);
 
         localStorage.setItem(users, JSON.stringify(existingUsers));
       }
 
-      if (window.localStorage.getItem("users") === null) {
+      if (window.localStorage.getItem('users') === null) {
         existingUsers.push(user);
 
         localStorage.setItem(users, JSON.stringify(existingUsers));
@@ -126,10 +121,10 @@ export default {
      *
      */
     handleSubmit() {
-      this.addToLocalStorageArray("users", this.user);
+      this.addToLocalStorageArray('users', this.user);
       //window.localStorage.setItem("user", JSON.stringify(this.user));
-      this.$router.push({ path: "/addtest" });
-    }
-  }
+      this.$router.push({ path: '/addtest' });
+    },
+  },
 };
 </script>

@@ -6,28 +6,28 @@
 </template>
 
 <script>
-import Menu from "./components/Menu";
+import Menu from './components/Menu';
 export default {
   components: { Menu },
   computed: {
     currentRoute() {
       return this.$router.currentRoute.name;
-    }
+    },
   },
   watch: {
     currentRoute(newr, oldr) {
       console.log(newr, oldr);
-    }
-  }
+    },
+  },
 };
 </script>
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap");
-@import "./css/form.css";
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap');
+@import './css/form.css';
 
 :root {
   --primary-color: #34cb79;
-  --primary-color-darker: #2FB86E;
+  --primary-color-darker: #2fb86e;
   --title-color: #322153;
   --text-color: #6c6c80;
   --light-grey: #f0f0f5;
@@ -48,7 +48,7 @@ body {
 body,
 input,
 button {
-  font-family: "Quicksand", Arial, Helvetica, sans-serif;
+  font-family: 'Quicksand', Arial, Helvetica, sans-serif;
 }
 
 span,
@@ -59,7 +59,7 @@ h4,
 h5,
 h6 {
   color: var(--title-color);
-  font-family: "Quicksand";
+  font-family: 'Quicksand';
 }
 
 #app {

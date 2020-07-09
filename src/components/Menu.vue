@@ -12,29 +12,22 @@
 
 <script>
 export default {
-  props: {
-    route: {
-      type: String
-    }
-  },
   // window.history.length > 1
   created() {
-    console.log("route", this.route);
-    console.log(this.$router.currentRoute.name === "Home");
+    console.log('route', this.$router.currentRoute.name);
   },
   computed: {
     isHome() {
-      return this.$router.currentRoute.name === "Home";
-    }
+      return this.$router.currentRoute.name === 'Home';
+    },
   },
   methods: {
-
     handleAddUser() {
-      this.$router.push("/adduser");
+      this.$router.push('/adduser');
     },
     handleGoBack() {
       this.$router.go(-1);
-    }
+    },
   },
 };
 </script>
