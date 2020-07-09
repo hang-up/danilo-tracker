@@ -20,6 +20,11 @@ const routes = [
     name: 'AddTest',
     component: () => import(/* webpackChunkName: "AddTest" */ '../views/AddTest.vue'),
   },
+  {
+    path: '/addtest2',
+    name: 'AddTest2',
+    component: () => import(/* webpackChunkName: "AddTestZ" */ '../views/AddTest2.vue'),
+  },
 ];
 
 const router = new VueRouter({
