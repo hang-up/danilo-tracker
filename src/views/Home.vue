@@ -3,8 +3,7 @@
     <div class="main">
       <h1>Start tracking your body today</h1>
       <p>
-        We help you tracking information about your body with a couple of
-        clicks.
+        We help you tracking information about your body with a couple of clicks.
       </p>
       <div class="search-container">
         <div class="pre-input">
@@ -16,11 +15,6 @@
     <div class="picture">
       <img alt="logo" src="../assets/placeholder.svg" />
     </div>
-    <!-- <div>
-      <p>Colocar a imagem resposnsiva e que nao tenha influencia no resto do</p>
-      <p>conteudo. A imagm tem que tocar no fundo.</p>
-      <p>Ver porque com lrem * 100 ta indo pro teto</p>
-    </div> -->
   </div>
 </template>
 

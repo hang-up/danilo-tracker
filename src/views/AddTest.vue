@@ -5,8 +5,6 @@
     <keep-alive>
       <component :is="protocol"></component>
     </keep-alive>
-    <!-- <FormPollock3 v-if="form.protocol === 'FormPollock3'" /> -->
-    <!-- <FormPollock7 v-if="form.protocol === 'FormPollock7'" /> -->
     <div class="g grid-33 grid-m-100">
       <button class="btn-primary" @click="handleSubmit">
         Save
