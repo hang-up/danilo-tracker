@@ -1,21 +1,21 @@
 <script>
 export default {
-  name: "Protocol Loader",
+  name: 'Protocol Loader',
   data: () => {
     return {
       protocols: [],
       selectedProtocol: {},
-      user: {}
+      user: {},
     };
   },
 
   created() {
-    this.user = JSON.parse(window.localStorage.getItem("user"));
+    this.user = JSON.parse(window.localStorage.getItem('user'));
   },
 
   methods: {
-    fetchProtocols() {}
-  }
+    fetchProtocols() {},
+  },
 };
 </script>
 
