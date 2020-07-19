@@ -26,7 +26,7 @@ export default {
 </script>
 
 <template>
-  <form @submit="update">
+  <form>
     <div class="form-container">
       <div class="g grid-100 grid-m-100">
         <h3>Protocol: Pollock 3 sites</h3>
