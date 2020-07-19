@@ -31,6 +31,11 @@ const routes = [
     name: 'UserProfile',
     component: UserProfile,
   },
+  {
+    path: '/userprofile/:tracks',
+    name: 'Tracks',
+    component: () => import(/* webpackChunkName: "Tracks" */ '../views/Tracks.vue'),
+  },
 ];
 
 const router = new VueRouter({

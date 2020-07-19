@@ -1,57 +1,91 @@
 <script>
-
+import Modal from '../components/track-modal'
 export default {
-  
+  components: { Modal },
+  data () {
+    return {
+      user: {
+        name: 'Danilo Heraclio',
+        dob: '1981-03-24',
+        gender: 'male',
+        preferedUnit: 'metric',
+      },
+      showModal: false,
+      selectedCard: '',
+      payload: null,
+      cards: [
+        {
+          cardType: 'Weight',
+          cardUnit: this.formattedWeightUnit,
+          cardValue: 0,
+          canAdd: true,
+        },
+        {
+          cardType: 'Pushup',
+          cardUnit: null,
+          cardValue: 0,
+          canAdd: true,
+        },
+        {
+          cardType: 'IMC',
+          cardValue: 0,
+          canAdd: false,
+        },
+      ],
+    };
+  },
+  computed: {
+    formattedWeightUnit() {
+      return this.user.preferedUnit === 'metric' ? 'kg' : 'lbs';
+    }
+  },
+  methods: {
+    handleOpenModal(card) {
+      this.selectedCard = card;
+      this.showModal = true;
+    },
+
+    onSave(val) {
+      this.payload = val;
+    }
+  }
 };
 </script>
 
 <template>
   <div class="form-container">
     <div class="g grid-100 form-header">
-      <h3 class="sub-title">Danilo profile</h3>
-      <p>Name:<span>Danilo Heraclio</span></p>
-      <p>Age:<span>39</span></p>
-      <p>Gender:<span>male</span></p>
+      <h3 class="sub-title">{{ user.name }}</h3>
+      <p>DOB:<span>{{ user.dob }}</span></p>
+      <p>Age:<span> calculate </span></p>
+      <p>Gender:<span>{{ user.gender}}</span></p>
     </div>
   
 
-    <div class="g grid-100 form-header">
+    <div class="g grid-100 form-header v-spacer-top">
       <h3 class="sub-title">Body tracks</h3>
 
       <div class="card-grid">
-        <div class="card">
-          <button class="card-button" aria-label="add">+</button>
-          <p class="card-title">Weight</p>
+        <div class="card" v-for="card in cards" :key="card.cardType">
+          <button v-if="card.canAdd" class="card-button" aria-label="add" @click="handleOpenModal(card)">+</button>
+          <p class="card-title">{{ card.cardType }}</p>
           <div class="card-value-box">
-            <span class="card-value">68.5</span><span class="card-unit">kg</span>
+            <span @click="$router.push({ path: '/userprofile/tracks' })" class="card-value">{{ card.cardValue }}</span>
+            <span v-if="card.cardUnit" class="card-unit">{{ card.cardUnit }}</span>
           </div>
+
         </div>
 
-        <div class="card">
-          <button class="card-button" aria-label="add">+</button>
-          <p class="card-title">Pushup</p>
-          <div class="card-value-box">
-            <span class="card-value">42</span><span class="card-unit">/min</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <button class="card-button" aria-label="add">+</button>
-          <p class="card-title">Imc</p>
-          <div class="card-value-box">
-            <span class="card-value">23.8</span><span class="card-unit"></span>
-          </div>
-        </div>
-
-        <div class="card">
-          <button class="card-button" aria-label="add">+</button>
-          <p class="card-title">Bodyfat</p>
-          <div class="card-value-box">
-            <span class="card-value">17.5</span><span class="card-unit">kg/m²</span>
-          </div>
-        </div>
+        <Modal
+          v-if="showModal"
+          :card="selectedCard"
+          @close="showModal = false"
+          @save="onSave"
+        />
       </div>
     </div>
+
+    
   </div>
 </template>
 <style scoped>
@@ -66,17 +100,13 @@ export default {
   background: var(--light-grey);
   border-radius: 4px;
   width: calc(50% - 8px);
-  margin: 8px auto;
+  margin: 8px 0;
   padding: 8px;
   position: relative;
 }
 
 .card:first-child {
   margin-right: 12px;
-}
-
-.card:last-child {
-  margin-left: 12px;
 }
 
 .card-button {

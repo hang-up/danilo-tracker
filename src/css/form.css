@@ -118,6 +118,13 @@ input[type="date"] {
   cursor: pointer;
 }
 
+.v-spacer-top {
+  margin-top: 16px;
+}
+
+.v-spacer-bottom {
+  margin-bottom: 16px;
+} 
 
 /* On screens that are 480px or less */
 @media screen and (max-width: 480px) {
@@ -153,5 +160,9 @@ input[type="date"] {
 
   .grid-m-100 {
     width: calc(100% - 12px);
+  }
+
+  .sub-title {
+    margin-bottom: 16px;
   }
 }
