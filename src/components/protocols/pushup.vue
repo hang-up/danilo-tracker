@@ -11,7 +11,7 @@ export default {
   },
   methods: {
     handleSubmit() {
-      this.$emit('update', this.measures)
+      this.$emit('update', this.measures);
     },
   },
 };

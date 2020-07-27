@@ -1,8 +1,8 @@
 <script>
-import Modal from '../components/track-modal'
+import Modal from '../components/track-modal';
 export default {
   components: { Modal },
-  data () {
+  data() {
     return {
       user: {
         name: 'Danilo Heraclio',
@@ -37,7 +37,7 @@ export default {
   computed: {
     formattedWeightUnit() {
       return this.user.preferedUnit === 'metric' ? 'kg' : 'lbs';
-    }
+    },
   },
   methods: {
     handleOpenModal(card) {
@@ -47,8 +47,8 @@ export default {
 
     onSave(val) {
       this.payload = val;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -56,36 +56,40 @@ export default {
   <div class="form-container">
     <div class="g grid-100 form-header">
       <h3 class="sub-title">{{ user.name }}</h3>
-      <p>DOB:<span>{{ user.dob }}</span></p>
+      <p>
+        DOB:<span>{{ user.dob }}</span>
+      </p>
       <p>Age:<span> calculate </span></p>
-      <p>Gender:<span>{{ user.gender}}</span></p>
+      <p>
+        Gender:<span>{{ user.gender }}</span>
+      </p>
     </div>
-  
 
     <div class="g grid-100 form-header v-spacer-top">
       <h3 class="sub-title">Body tracks</h3>
 
       <div class="card-grid">
         <div class="card" v-for="card in cards" :key="card.cardType">
-          <button v-if="card.canAdd" class="card-button" aria-label="add" @click="handleOpenModal(card)">+</button>
+          <button
+            v-if="card.canAdd"
+            class="card-button"
+            aria-label="add"
+            @click="handleOpenModal(card)"
+          >
+            +
+          </button>
           <p class="card-title">{{ card.cardType }}</p>
           <div class="card-value-box">
-            <span @click="$router.push({ path: '/userprofile/tracks' })" class="card-value">{{ card.cardValue }}</span>
+            <span @click="$router.push({ path: '/userprofile/tracks' })" class="card-value">{{
+              card.cardValue
+            }}</span>
             <span v-if="card.cardUnit" class="card-unit">{{ card.cardUnit }}</span>
           </div>
-
         </div>
 
-        <Modal
-          v-if="showModal"
-          :card="selectedCard"
-          @close="showModal = false"
-          @save="onSave"
-        />
+        <Modal v-if="showModal" :card="selectedCard" @close="showModal = false" @save="onSave" />
       </div>
     </div>
-
-    
   </div>
 </template>
 <style scoped>

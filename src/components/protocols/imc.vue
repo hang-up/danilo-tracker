@@ -21,7 +21,6 @@ export default {
         <label class="label" for="size2">Date</label>
       </div>
       <div class="g grid-33 grid-m-25"></div>
-
     </div>
   </form>
 </template>
