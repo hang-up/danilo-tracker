@@ -90,9 +90,6 @@ export default {
       minWeight: 35,
     };
   },
-  created() {
-    console.log(this.route);
-  },
   methods: {
     /**
      * Add an item to a localStorage() array
@@ -122,8 +119,9 @@ export default {
      */
     handleSubmit() {
       this.addToLocalStorageArray('users', this.user);
-      //window.localStorage.setItem("user", JSON.stringify(this.user));
-      this.$router.push({ path: '/addtest' });
+      this.$store.commit('SET_CURRENT_USER', this.user);
+      window.localStorage.setItem('current_user', JSON.stringify(this.user));
+      this.$router.push({ name: 'UserProfile' });
     },
   },
 };

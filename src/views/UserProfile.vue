@@ -1,15 +1,11 @@
 <script>
 import Modal from '../components/track-modal';
+import { mapState } from 'vuex';
+
 export default {
   components: { Modal },
   data() {
     return {
-      user: {
-        name: 'Danilo Heraclio',
-        dob: '1981-03-24',
-        gender: 'male',
-        preferedUnit: 'metric',
-      },
       showModal: false,
       selectedCard: '',
       payload: null,
@@ -35,8 +31,10 @@ export default {
     };
   },
   computed: {
+    ...mapState(['currentUser']),
     formattedWeightUnit() {
-      return this.user.preferedUnit === 'metric' ? 'kg' : 'lbs';
+      return 'kg';
+      // return this.currentUser.preferedUnit === 'metric' ? 'kg' : 'lbs';
     },
   },
   methods: {
@@ -55,13 +53,13 @@ export default {
 <template>
   <div class="form-container">
     <div class="g grid-100 form-header">
-      <h3 class="sub-title">{{ user.name }}</h3>
+      <h3 class="sub-title">{{ currentUser.name }}</h3>
       <p>
-        DOB:<span>{{ user.dob }}</span>
+        DOB:<span>{{ currentUser.dob }}</span>
       </p>
       <p>Age:<span> calculate </span></p>
       <p>
-        Gender:<span>{{ user.gender }}</span>
+        Gender:<span>{{ currentUser.gender }}</span>
       </p>
     </div>
 

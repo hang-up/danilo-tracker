@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import UserProfile from '../views/UserProfile.vue';
+import store from '../store';
 
 Vue.use(VueRouter);
 
@@ -19,11 +20,6 @@ const routes = [
   {
     path: '/addtest',
     name: 'AddTest',
-    component: () => import(/* webpackChunkName: "AddTest" */ '../views/AddTest.vue'),
-  },
-  {
-    path: '/addtest2',
-    name: 'AddTest2',
     component: () => import(/* webpackChunkName: "AddTestZ" */ '../views/AddTest2.vue'),
   },
   {
@@ -40,6 +36,13 @@ const routes = [
 
 const router = new VueRouter({
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (window.localStorage.getItem('current_user')) {
+    store.commit('SET_CURRENT_USER', JSON.parse(localStorage.getItem('current_user')));
+  }
+  next();
 });
 
 export default router;
