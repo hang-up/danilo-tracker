@@ -44,8 +44,8 @@ x Fixing the pollock protocols selection
 > July 27th 2020
 > For next time: Attach all the data together. Build renderless components (to be architected)
 
+```
 - Loaded currentUser in beforeEach route hook
 - Experienced with lowdb LocalStorage adapater (found it useless for now)
 - Loaded currentUser in vuex state
-```
 ```
